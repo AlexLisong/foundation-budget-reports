@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "project": {
+    "slug": "new-project",
+    "title": {
+      "zh": "填写项目名称",
+      "en": "Enter project name"
+    },
+    "location": {
+      "zh": "填写地点",
+      "en": "Enter location"
+    },
+    "estimate_date": "2026-09-16",
+    "currency": "USD",
+    "example": false,
+    "scope": {
+      "zh": "填写已确认施工范围",
+      "en": "Enter the confirmed construction scope"
+    },
+    "source": {
+      "zh": "填写源图纸、页码、版本日期及实际项目身份",
+      "en": "Enter source drawings, sheet references, revision date and actual project identity"
+    },
+    "tax_note": {
+      "zh": "未另计销售税/使用税；当地税费及报价包含方式待核实。",
+      "en": "Sales/use tax has not been added. Confirm local taxes and what supplier quotes include."
+    },
+    "price_note": {
+      "zh": "填写单价来源、日期、是否已询价和报价包含项",
+      "en": "Enter rate sources, dates, quote status and inclusions"
+    }
+  },
+  "inputs": {
+    "slab_length_ft": null,
+    "slab_width_ft": null,
+    "slab_thickness_in": null
+  },
+  "quantities": [
+    {
+      "id": "slab",
+      "label": {
+        "zh": "地坪（还需补齐其他基础项）",
+        "en": "Slab (add all other required foundation components)"
+      },
+      "formula": "slab_length_ft * slab_width_ft * slab_thickness_in / 12 / 27",
+      "unit": "yd3",
+      "basis": {
+        "zh": "填写尺寸、单位和计量依据；不得遗漏条基、柱基、挡土墙等",
+        "en": "Enter dimensions/units/basis; add strip footings, pads, retaining walls and other applicable components"
+      },
+      "source": {
+        "zh": "填写图号及页码",
+        "en": "Enter drawing and page reference"
+      },
+      "status": "unconfirmed"
+    }
+  ],
+  "concrete": {
+    "waste_fraction": null,
+    "order_increment_yd3": null,
+    "order_override_yd3": null,
+    "scenarios": {
+      "low": {
+        "volume_yd3": null,
+        "rate": null
+      },
+      "base": {
+        "rate": null
+      },
+      "high": {
+        "volume_yd3": null,
+        "rate": null
+      }
+    },
+    "price_basis": {
+      "zh": "填写运输泵送及税费是否包含",
+      "en": "State delivery, pumping and tax inclusions"
+    }
+  },
+  "labor": {
+    "tasks": [
+      {
+        "label": {
+          "zh": "填写工序并增加所需任务",
+          "en": "Enter activity and add required tasks"
+        },
+        "hours": null
+      }
+    ],
+    "scenarios": {
+      "low": {
+        "hours": null,
+        "rate": null
+      },
+      "base": {
+        "rate": null
+      },
+      "high": {
+        "hours": null,
+        "rate": null
+      }
+    },
+    "basis": {
+      "zh": "综合人工包含工资及雇主用工负担。机械土方和泵车已含各自操作员，不在此重复；管理利润另计。每工日按8小时，检查和养护会增加日历工期。",
+      "en": "Labor includes wages and employer burden. Excavation and pump subcontract allowances include their operators; do not count them again here. Overall overhead/profit is separate. Worker-days use 8 hours; inspections and curing extend calendar duration."
+    }
+  },
+  "allowances": [
+    {
+      "label": {
+        "zh": "填写其他材料机械分包暂列项",
+        "en": "Enter material/equipment/subcontract allowances"
+      },
+      "amounts": {
+        "low": null,
+        "base": null,
+        "high": null
+      },
+      "basis": {
+        "zh": "说明包含项以及是否含操作员，避免重复人工",
+        "en": "Describe inclusions and operators to avoid double-counting labor"
+      }
+    }
+  ],
+  "markups": {
+    "overhead_profit": {
+      "low": null,
+      "base": null,
+      "high": null
+    },
+    "contingency": {
+      "low": null,
+      "base": null,
+      "high": null
+    }
+  },
+  "assumptions": [
+    {
+      "zh": "填写本项目实际假设和未确认尺寸",
+      "en": "Enter project-specific assumptions and unconfirmed dimensions"
+    }
+  ],
+  "verification": [
+    {
+      "zh": "填写订货报价前需要确认的事项",
+      "en": "Enter items to verify before quotation or ordering"
+    }
+  ],
+  "exclusions": [
+    {
+      "zh": "填写实际不包含的施工范围",
+      "en": "Enter the actual exclusions"
+    }
+  ]
+}

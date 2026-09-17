@@ -1,0 +1,386 @@
+{
+  "schema_version": 1,
+  "project": {
+    "slug": "gazebo-example",
+    "title": {
+      "zh": "凉亭基础历史示例",
+      "en": "Gazebo Foundation Example"
+    },
+    "location": {
+      "zh": "加州 Palo Cedro 地区",
+      "en": "Palo Cedro area, California"
+    },
+    "estimate_date": "2026-09-16",
+    "currency": "USD",
+    "example": true,
+    "scope": {
+      "zh": "地坪、周边梁、6处柱墩/扩大基础、后墙矮基础墙及壁炉基础暂列量；包括普通挖土运土、回填压实、钢筋模板预埋件、泵送、人工、基层、普通排水接缝处理和清理。",
+      "en": "Slab, perimeter beams, six pedestals/enlarged footings, rear curb and fireplace foundation allowance; ordinary excavation/haul-off, backfill/compaction, reinforcing, formwork, embeds, pumping, labor, base, basic drainage/joints and cleanup."
+    },
+    "source": {
+      "zh": "两页凉亭图纸 A1/S1 的去标识算例；保留原预算数字，客户姓名、地址及原图不纳入此示例。新项目需查看自己的实际图纸。",
+      "en": "De-identified example based on a two-sheet gazebo plan (A1/S1), retaining the historical estimate numbers. Customer identity/address and source drawings are omitted. Inspect the actual drawings for each new project."
+    },
+    "tax_note": {
+      "zh": "未另计销售税/使用税；当地税费及报价包含方式待核实。",
+      "en": "Sales/use tax has not been added. Confirm local taxes and what supplier quotes include."
+    },
+    "price_note": {
+      "zh": "去标识历史示例，费率为当时的预算假设，未取得当地供应商或承包商报价；不是当前价格或固定报价。",
+      "en": "De-identified historical example. Rates are unquoted estimating allowances from the original estimate, not current prices or fixed bids."
+    }
+  },
+  "inputs": {
+    "width_ft": 25.333333333333332,
+    "length_ft": 20,
+    "slab_in": 4,
+    "beam_length_ft": 84,
+    "beam_width_ft": 1,
+    "beam_below_base_in": 12,
+    "base_connection_in": 4,
+    "pedestal_count": 6,
+    "pad_width_ft": 3,
+    "pad_length_ft": 3,
+    "pad_depth_ft": 1,
+    "pad_overlap_sf": 3,
+    "pedestal_side_ft": 2.6666666666666665,
+    "upstand_in": 2,
+    "rear_clear_ft": 20,
+    "rear_width_ft": 0.5,
+    "fireplace_net_yd3": 0.3
+  },
+  "quantities": [
+    {
+      "id": "slab",
+      "label": {
+        "zh": "4英寸地坪",
+        "en": "4 in slab"
+      },
+      "formula": "width_ft * length_ft * slab_in / 12 / 27",
+      "unit": "yd3",
+      "basis": {
+        "zh": "全幅毛面积约506.7平方英尺。",
+        "en": "Full gross area, approximately 506.7 sq ft."
+      },
+      "source": {
+        "zh": "A1/S1 平面及地坪说明",
+        "en": "A1/S1 plans and slab notes"
+      },
+      "status": "derived"
+    },
+    {
+      "id": "beams",
+      "label": {
+        "zh": "周边梁净增量",
+        "en": "Perimeter beams: net addition"
+      },
+      "formula": "beam_length_ft * beam_width_ft * (beam_below_base_in + base_connection_in) / 12 / 27",
+      "unit": "yd3",
+      "basis": {
+        "zh": "扣除已计地坪厚度，12英寸地下段加4英寸连接段。",
+        "en": "Exclude counted slab; 12 in below base plus assumed 4 in connection."
+      },
+      "source": {
+        "zh": "S1详图3及平面；84英尺及连接段为暂估",
+        "en": "S1 Detail 3/plan; 84 ft and connection are assumptions"
+      },
+      "status": "allowance"
+    },
+    {
+      "id": "pedestals",
+      "label": {
+        "zh": "6处柱墩净增量",
+        "en": "Six pedestals: net addition"
+      },
+      "formula": "pedestal_count * ((pad_width_ft * pad_length_ft - pad_overlap_sf) * pad_depth_ft + (pedestal_side_ft * pedestal_side_ft - pedestal_side_ft * beam_width_ft) * base_connection_in / 12 + pedestal_side_ft * pedestal_side_ft * upstand_in / 12) / 27",
+      "unit": "yd3",
+      "basis": {
+        "zh": "底座暂按3英尺方形×12英寸，扣梁及地坪交叠。",
+        "en": "Assume 3 ft square x 12 in footings; deduct beam/slab overlaps."
+      },
+      "source": {
+        "zh": "S1详图2；底座完整尺寸缺失",
+        "en": "S1 Detail 2; full footing dimensions missing"
+      },
+      "status": "allowance"
+    },
+    {
+      "id": "rear_curb",
+      "label": {
+        "zh": "后墙上翻",
+        "en": "Rear curb"
+      },
+      "formula": "rear_clear_ft * rear_width_ft * upstand_in / 12 / 27",
+      "unit": "yd3",
+      "basis": {
+        "zh": "净长20英尺、宽6英寸、上翻2英寸。",
+        "en": "20 ft clear, 6 in wide, 2 in above slab."
+      },
+      "source": {
+        "zh": "S1详图1，采用最小上翻假设",
+        "en": "S1 Detail 1; minimum upstand assumption"
+      },
+      "status": "allowance"
+    },
+    {
+      "id": "fireplace",
+      "label": {
+        "zh": "壁炉基础暂列",
+        "en": "Fireplace allowance"
+      },
+      "formula": "fireplace_net_yd3",
+      "unit": "yd3",
+      "basis": {
+        "zh": "只计基础净增加量，不含壁炉砌筑。",
+        "en": "Net foundation addition only; fireplace masonry excluded."
+      },
+      "source": {
+        "zh": "S1中央局部基础示意，尺寸未全",
+        "en": "S1 central feature; dimensions incomplete"
+      },
+      "status": "unconfirmed"
+    }
+  ],
+  "concrete": {
+    "waste_fraction": 0.08,
+    "order_increment_yd3": 1,
+    "order_override_yd3": null,
+    "scenarios": {
+      "low": {
+        "volume_yd3": 12,
+        "rate": 210
+      },
+      "base": {
+        "rate": 230
+      },
+      "high": {
+        "volume_yd3": 16,
+        "rate": 260
+      }
+    },
+    "price_basis": {
+      "zh": "低/中/高单价为210/230/260美元每立方码，暂含常规运输；泵送和进场附加费单列。",
+      "en": "Low/base/high rates: USD 210/230/260 per yd3, provisionally including standard delivery; pump and mobilization extras separate."
+    }
+  },
+  "labor": {
+    "tasks": [
+      {
+        "label": {
+          "zh": "放线、基层及配合",
+          "en": "Layout, base and coordination"
+        },
+        "hours": 24
+      },
+      {
+        "label": {
+          "zh": "模板与柱墩成型",
+          "en": "Forms and pedestals"
+        },
+        "hours": 48
+      },
+      {
+        "label": {
+          "zh": "钢筋和预埋件",
+          "en": "Rebar and embeds"
+        },
+        "hours": 24
+      },
+      {
+        "label": {
+          "zh": "浇筑振捣收面",
+          "en": "Place, vibrate and finish"
+        },
+        "hours": 40
+      },
+      {
+        "label": {
+          "zh": "拆模养护切缝清理",
+          "en": "Strip, cure, sawcut, clean"
+        },
+        "hours": 16
+      },
+      {
+        "label": {
+          "zh": "排水接缝及保护",
+          "en": "Drainage, joints, protection"
+        },
+        "hours": 8
+      }
+    ],
+    "scenarios": {
+      "low": {
+        "hours": 128,
+        "rate": 55
+      },
+      "base": {
+        "rate": 65
+      },
+      "high": {
+        "hours": 208,
+        "rate": 75
+      }
+    },
+    "basis": {
+      "zh": "综合人工包含工资及雇主用工负担。机械土方和泵车已含各自操作员，不在此重复；管理利润另计。每工日按8小时，检查和养护会增加日历工期。",
+      "en": "Labor includes wages and employer burden. Excavation and pump subcontract allowances include their operators; do not count them again here. Overall overhead/profit is separate. Worker-days use 8 hours; inspections and curing extend calendar duration."
+    }
+  },
+  "allowances": [
+    {
+      "label": {
+        "zh": "钢筋及基础预埋件",
+        "en": "Rebar and foundation embeds"
+      },
+      "amounts": {
+        "low": 1000,
+        "base": 1500,
+        "high": 2300
+      },
+      "basis": {
+        "zh": "钢筋暂估0.20-0.35公吨，含损耗；未逐根翻样，基础锚栓含在内。",
+        "en": "Approx. 0.20-0.35 metric tonnes including waste; not a bar schedule. Foundation anchors included."
+      }
+    },
+    {
+      "label": {
+        "zh": "模板支撑材料及租赁",
+        "en": "Formwork materials / rental"
+      },
+      "amounts": {
+        "low": 600,
+        "base": 900,
+        "high": 1400
+      },
+      "basis": {
+        "zh": "安装拆除人工已在人工项。",
+        "en": "Installation/stripping labor is in the labor schedule."
+      }
+    },
+    {
+      "label": {
+        "zh": "碎石基层及隔潮辅材",
+        "en": "Base and moisture-control allowance"
+      },
+      "amounts": {
+        "low": 700,
+        "base": 1000,
+        "high": 1500
+      },
+      "basis": {
+        "zh": "碎石询价7-8立方码；隔潮辅材暂留，图上未明确要求隔汽膜。",
+        "en": "Allow 7-8 yd3 aggregate; moisture materials provisional, vapor barrier not explicitly specified."
+      }
+    },
+    {
+      "label": {
+        "zh": "泵车及进场附加费",
+        "en": "Pump and mobilization extras"
+      },
+      "amounts": {
+        "low": 1000,
+        "base": 1500,
+        "high": 2400
+      },
+      "basis": {
+        "zh": "暂按1-2次进场，含泵车操作员。",
+        "en": "Assume 1-2 visits, including pump operator."
+      }
+    },
+    {
+      "label": {
+        "zh": "挖土运土回填压实",
+        "en": "Excavation, hauling, backfill, compaction"
+      },
+      "amounts": {
+        "low": 1800,
+        "base": 2800,
+        "high": 4500
+      },
+      "basis": {
+        "zh": "机械分包含司机及普通处置；无测量土方及运距资料。",
+        "en": "Equipment subcontract includes operators/ordinary disposal; earthwork and haul distance unmeasured."
+      }
+    },
+    {
+      "label": {
+        "zh": "排水接缝及邻近保护",
+        "en": "Drainage, joints, adjacent protection"
+      },
+      "amounts": {
+        "low": 500,
+        "base": 800,
+        "high": 1400
+      },
+      "basis": {
+        "zh": "材料与保护耗材；安装人工已计。",
+        "en": "Materials/protection consumables; labor counted separately."
+      }
+    },
+    {
+      "label": {
+        "zh": "养护切缝辅材清理",
+        "en": "Curing, sawcutting consumables, cleanup"
+      },
+      "amounts": {
+        "low": 350,
+        "base": 500,
+        "high": 850
+      },
+      "basis": {
+        "zh": "普通耗材及清理，不含特殊检测。",
+        "en": "Ordinary consumables/cleanup, not special inspections."
+      }
+    }
+  ],
+  "markups": {
+    "overhead_profit": {
+      "low": 0.1,
+      "base": 0.12,
+      "high": 0.15
+    },
+    "contingency": {
+      "low": 0.15,
+      "base": 0.15,
+      "high": 0.15
+    }
+  },
+  "assumptions": [
+    {
+      "zh": "84英尺为估算中心线长度。4英寸基层连接段增加约1.04立方码；审批剖面不需要时应扣除，不得视为图上已确认总深。",
+      "en": "84 ft is an estimated centerline length. The assumed 4 in connection adds about 1.04 yd3; deduct if not required. It is not a confirmed total depth."
+    },
+    {
+      "zh": "3英尺方形底座不是图上完整标注。每处暂扣3平方英尺梁交叠；柱墩高程和壁炉基础需核实。",
+      "en": "3 ft square pads are not fully dimensioned on the plan. Deduct an assumed 3 sq ft beam overlap each; verify pedestal elevations and fireplace footing."
+    },
+    {
+      "zh": "示例采用普通土方及正常机械通道；未核地形、岩石或既有泳池铺装修复。",
+      "en": "Assumes ordinary soil and normal access; terrain, rock and pool/paving repairs are unverified."
+    }
+  ],
+  "verification": [
+    {
+      "zh": "核实文件名、项目名、地址及批准图纸是否一致。",
+      "en": "Reconcile filename, project identity, address and approved drawing set."
+    },
+    {
+      "zh": "核实柱墩底座长宽深、梁埋深、后墙高度、壁炉重量与基础，以及详图对应分段。",
+      "en": "Confirm pedestal footing dimensions, beam depth, rear wall height, fireplace load/footing and detail-to-plan mapping."
+    },
+    {
+      "zh": "确认混凝土强度、配筋、预埋锚件、坡向、排水出口、泵管距离及施工通道。",
+      "en": "Confirm concrete strength, reinforcement, embeds, slopes/outlets, pump reach and access."
+    }
+  ],
+  "exclusions": [
+    {
+      "zh": "上部木结构、屋顶、墙面、壁炉厨房设备、台面砌筑、泳池、图外露台及地下管线另计。",
+      "en": "Timber superstructure, roof, finishes, fireplace/kitchen equipment, countertop masonry, pool, extra patios and underground services excluded."
+    },
+    {
+      "zh": "设计许可、特殊检测、岩石开挖、软土换填、特殊支护降水及大面积既有设施修复另计。",
+      "en": "Design/permits, special inspections, rock, unsuitable-soil replacement, shoring/dewatering and extensive existing-facility repairs excluded."
+    }
+  ]
+}

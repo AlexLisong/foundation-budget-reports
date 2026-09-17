@@ -1,0 +1,445 @@
+{
+  "schema_version": 1,
+  "project": {
+    "slug": "residential-example",
+    "title": {
+      "zh": "住宅基础历史示例",
+      "en": "Residential Foundation Example"
+    },
+    "location": {
+      "zh": "加州 Corning 地区",
+      "en": "Corning area, California"
+    },
+    "estimate_date": "2026-09-15",
+    "currency": "USD",
+    "example": true,
+    "scope": {
+      "zh": "下层及车库地坪、门口平台、条形基础、左侧挡土墙与回墙、10处柱基/扩大基础、空调垫板；包括普通土方、钢筋模板、泵送、人工、基层、排水防水和清理。",
+      "en": "Lower-level/garage slab, landing, strip footings, retaining wall/returns, 10 pads, HVAC pad; ordinary earthwork, reinforcing/formwork, pumping, labor, base, drainage/waterproofing and cleanup."
+    },
+    "source": {
+      "zh": "18页住宅图纸的去标识算例，重点为第4-8、12-13页。所有未核墙高及节点假设保留说明，未附客户图纸。",
+      "en": "De-identified 18-sheet residential example, mainly pages 4-8 and 12-13. Unverified wall heights/details remain labeled assumptions; customer drawings are not included."
+    },
+    "tax_note": {
+      "zh": "未另计销售税/使用税；当地税费及报价包含方式待核实。",
+      "en": "Sales/use tax has not been added. Confirm local taxes and what supplier quotes include."
+    },
+    "price_note": {
+      "zh": "去标识历史示例，费率为当时的预算假设，未取得当地供应商或承包商报价；不是当前价格或固定报价。",
+      "en": "De-identified historical example. Rates are unquoted estimating allowances from the original estimate, not current prices or fixed bids."
+    }
+  },
+  "inputs": {
+    "slab_area_sf": 788,
+    "slab_in": 4,
+    "landing_width_ft": 8,
+    "landing_length_ft": 5.5,
+    "hvac_side_ft": 4,
+    "strip20_length_ft": 122.5,
+    "strip24_length_ft": 36,
+    "strip36_length_ft": 20,
+    "strip_width_ft": 1,
+    "wall_length_ft": 28,
+    "wall_thickness_in": 8,
+    "wall_height_ft": 9,
+    "wall_footing_width_ft": 2,
+    "wall_footing_depth_ft": 1,
+    "return_length_ft": 12,
+    "return_avg_height_ft": 4.5,
+    "return_footing_width_ft": 5.333333333333333,
+    "return_footing_depth_ft": 1,
+    "key_width_ft": 1,
+    "key_depth_ft": 2.5,
+    "pads_net_yd3": 1,
+    "steps_net_yd3": 0.5
+  },
+  "quantities": [
+    {
+      "id": "slab",
+      "label": {
+        "zh": "下层及车库地坪",
+        "en": "Lower-level and garage slab"
+      },
+      "formula": "slab_area_sf * slab_in / 12 / 27",
+      "unit": "yd3",
+      "basis": {
+        "zh": "16×36 + 8×26.5 = 788平方英尺。",
+        "en": "16 x 36 + 8 x 26.5 = 788 sq ft."
+      },
+      "source": {
+        "zh": "第5-8页平面",
+        "en": "Plans, pages 5-8"
+      },
+      "status": "derived"
+    },
+    {
+      "id": "landing",
+      "label": {
+        "zh": "门口平台",
+        "en": "Landing"
+      },
+      "formula": "landing_width_ft * landing_length_ft * slab_in / 12 / 27",
+      "unit": "yd3",
+      "basis": {
+        "zh": "44平方英尺，厚度暂按4英寸。",
+        "en": "44 sq ft; thickness assumed 4 in."
+      },
+      "source": {
+        "zh": "第8页基础平面",
+        "en": "Foundation plan, page 8"
+      },
+      "status": "allowance"
+    },
+    {
+      "id": "hvac",
+      "label": {
+        "zh": "空调设备垫板",
+        "en": "HVAC pad"
+      },
+      "formula": "hvac_side_ft * hvac_side_ft * slab_in / 12 / 27",
+      "unit": "yd3",
+      "basis": {
+        "zh": "暂按4英尺方形×4英寸。",
+        "en": "Assume 4 ft square x 4 in."
+      },
+      "source": {
+        "zh": "第8页设备垫板示意，尺寸待核",
+        "en": "Page 8 pad symbol; size unconfirmed"
+      },
+      "status": "allowance"
+    },
+    {
+      "id": "strips",
+      "label": {
+        "zh": "普通条形基础净增",
+        "en": "Strip footing net addition"
+      },
+      "formula": "strip_width_ft * (strip20_length_ft * (20 - slab_in) / 12 + strip24_length_ft * (24 - slab_in) / 12 + strip36_length_ft * (36 - slab_in) / 12) / 27",
+      "unit": "yd3",
+      "basis": {
+        "zh": "总长178.5英尺，按20/24/36英寸分组；扣4英寸地坪。",
+        "en": "178.5 ft grouped at 20/24/36 in heights; deduct 4 in slab."
+      },
+      "source": {
+        "zh": "第8、12页；分段长度暂估",
+        "en": "Pages 8/12; grouped lengths assumed"
+      },
+      "status": "allowance"
+    },
+    {
+      "id": "wall",
+      "label": {
+        "zh": "左侧挡土墙与底座",
+        "en": "Retaining wall and footing"
+      },
+      "formula": "wall_length_ft * (wall_thickness_in / 12 * wall_height_ft + wall_footing_width_ft * wall_footing_depth_ft) / 27",
+      "unit": "yd3",
+      "basis": {
+        "zh": "主墙暂按9英尺高；底座暂按24英寸宽×12英寸厚。",
+        "en": "Assume 9 ft wall; footing 24 in wide x 12 in thick."
+      },
+      "source": {
+        "zh": "第8、13页；9英尺为适用最大值，非实测",
+        "en": "Pages 8/13; 9 ft is a maximum detail height, not measured"
+      },
+      "status": "allowance"
+    },
+    {
+      "id": "returns",
+      "label": {
+        "zh": "回墙底座及抗滑键",
+        "en": "Returns, footings and keys"
+      },
+      "formula": "return_length_ft * (wall_thickness_in / 12 * return_avg_height_ft + return_footing_width_ft * return_footing_depth_ft + key_width_ft * key_depth_ft) / 27",
+      "unit": "yd3",
+      "basis": {
+        "zh": "总长12英尺，平均墙高4.5英尺；底座及键保守暂列。",
+        "en": "12 ft total, 4.5 ft average wall height; provisional footing/key."
+      },
+      "source": {
+        "zh": "第13页详图29，高档表值用于预算",
+        "en": "Page 13 Detail 29; upper schedule values used for allowance"
+      },
+      "status": "allowance"
+    },
+    {
+      "id": "pads",
+      "label": {
+        "zh": "柱基扩大基础净增",
+        "en": "Pad net additions"
+      },
+      "formula": "pads_net_yd3",
+      "unit": "yd3",
+      "basis": {
+        "zh": "2个PAD36、2个PAD30、4个PAD24、2个PAD18，扣条基交叠。",
+        "en": "2 PAD36, 2 PAD30, 4 PAD24, 2 PAD18; deduct strip overlaps."
+      },
+      "source": {
+        "zh": "第8页；毛量1.89立方码，净增加暂按1",
+        "en": "Page 8; gross 1.89 yd3, net allowance 1 yd3"
+      },
+      "status": "allowance"
+    },
+    {
+      "id": "steps",
+      "label": {
+        "zh": "上翻台阶节点",
+        "en": "Curbs, steps and local details"
+      },
+      "formula": "steps_net_yd3",
+      "unit": "yd3",
+      "basis": {
+        "zh": "局部高差暂列。",
+        "en": "Local level-change allowance."
+      },
+      "source": {
+        "zh": "第8、12页；施工放样后核实",
+        "en": "Pages 8/12; confirm during setting-out"
+      },
+      "status": "allowance"
+    }
+  ],
+  "concrete": {
+    "waste_fraction": 0.08,
+    "order_increment_yd3": 1,
+    "order_override_yd3": 40,
+    "scenarios": {
+      "low": {
+        "volume_yd3": 36,
+        "rate": 190
+      },
+      "base": {
+        "rate": 210
+      },
+      "high": {
+        "volume_yd3": 44,
+        "rate": 240
+      }
+    },
+    "price_basis": {
+      "zh": "低/中/高190/210/240美元每立方码，暂含常规运输；基准订货覆盖为40立方码，保留原预算保守取整。",
+      "en": "Low/base/high USD 190/210/240 per yd3, provisionally including standard delivery. Base order override of 40 yd3 preserves the original conservative allowance."
+    }
+  },
+  "labor": {
+    "tasks": [
+      {
+        "label": {
+          "zh": "放线基层配合",
+          "en": "Layout/base coordination"
+        },
+        "hours": 48
+      },
+      {
+        "label": {
+          "zh": "模板支撑",
+          "en": "Forms/bracing"
+        },
+        "hours": 200
+      },
+      {
+        "label": {
+          "zh": "钢筋预埋件",
+          "en": "Rebar/embeds"
+        },
+        "hours": 64
+      },
+      {
+        "label": {
+          "zh": "浇筑收面",
+          "en": "Place/finish"
+        },
+        "hours": 64
+      },
+      {
+        "label": {
+          "zh": "拆模养护清理",
+          "en": "Strip/cure/clean"
+        },
+        "hours": 48
+      },
+      {
+        "label": {
+          "zh": "防水排水安装",
+          "en": "Waterproof/drainage installation"
+        },
+        "hours": 24
+      }
+    ],
+    "scenarios": {
+      "low": {
+        "hours": 360,
+        "rate": 55
+      },
+      "base": {
+        "rate": 65
+      },
+      "high": {
+        "hours": 560,
+        "rate": 75
+      }
+    },
+    "basis": {
+      "zh": "综合人工包含工资及雇主用工负担。机械土方和泵车已含各自操作员，不在此重复；管理利润另计。每工日按8小时，检查和养护会增加日历工期。",
+      "en": "Labor includes wages and employer burden. Excavation and pump subcontract allowances include their operators; do not count them again here. Overall overhead/profit is separate. Worker-days use 8 hours; inspections and curing extend calendar duration."
+    }
+  },
+  "allowances": [
+    {
+      "label": {
+        "zh": "钢筋预埋五金",
+        "en": "Rebar and embeds"
+      },
+      "amounts": {
+        "low": 2500,
+        "base": 3500,
+        "high": 4500
+      },
+      "basis": {
+        "zh": "钢筋约0.8-1.2公吨及锚件，待翻样。",
+        "en": "Approx. 0.8-1.2 metric tonnes plus embeds; verify bar schedule."
+      }
+    },
+    {
+      "label": {
+        "zh": "模板支撑材料租赁",
+        "en": "Forms/bracing materials and rental"
+      },
+      "amounts": {
+        "low": 3000,
+        "base": 4500,
+        "high": 6000
+      },
+      "basis": {
+        "zh": "高挡土墙及条基模板，人工另计。",
+        "en": "Retaining-wall and footing forms; labor separate."
+      }
+    },
+    {
+      "label": {
+        "zh": "碎石砂及隔汽膜",
+        "en": "Aggregate, sand, vapor barrier"
+      },
+      "amounts": {
+        "low": 1400,
+        "base": 2100,
+        "high": 3000
+      },
+      "basis": {
+        "zh": "询价暂按碎石12立方码、砂6立方码及隔汽膜；排水碎石另留。",
+        "en": "Provisional 12 yd3 aggregate, 6 yd3 sand and vapor barrier; additional drainage aggregate."
+      }
+    },
+    {
+      "label": {
+        "zh": "排水防水材料",
+        "en": "Drainage/waterproofing materials"
+      },
+      "amounts": {
+        "low": 1200,
+        "base": 1800,
+        "high": 3000
+      },
+      "basis": {
+        "zh": "穿孔管、滤布、防水保护材料。",
+        "en": "Perforated pipe, filter fabric and waterproof/protection materials."
+      }
+    },
+    {
+      "label": {
+        "zh": "泵车设备进场",
+        "en": "Pump/mobilization"
+      },
+      "amounts": {
+        "low": 2200,
+        "base": 3000,
+        "high": 4200
+      },
+      "basis": {
+        "zh": "2-3次进场，含操作员。",
+        "en": "2-3 visits, including operators."
+      }
+    },
+    {
+      "label": {
+        "zh": "挖土回填压实运土",
+        "en": "Excavation/backfill/compaction/hauling"
+      },
+      "amounts": {
+        "low": 6000,
+        "base": 8000,
+        "high": 14000
+      },
+      "basis": {
+        "zh": "机械分包含司机及普通弃土；土方未测量。",
+        "en": "Equipment subcontract includes operators/ordinary disposal; earthwork unmeasured."
+      }
+    },
+    {
+      "label": {
+        "zh": "辅材养护清理",
+        "en": "Consumables/curing/cleanup"
+      },
+      "amounts": {
+        "low": 700,
+        "base": 1000,
+        "high": 1600
+      },
+      "basis": {
+        "zh": "普通材料小设备及清理。",
+        "en": "Ordinary consumables, small equipment and cleanup."
+      }
+    }
+  ],
+  "markups": {
+    "overhead_profit": {
+      "low": 0.1,
+      "base": 0.12,
+      "high": 0.15
+    },
+    "contingency": {
+      "low": 0.15,
+      "base": 0.15,
+      "high": 0.15
+    }
+  },
+  "assumptions": [
+    {
+      "zh": "主墙9英尺为预算假设，不是图纸明确实际高。每增加1英尺高，单墙身约增加0.69立方码。",
+      "en": "The 9 ft main wall is assumed, not a confirmed actual height. Each extra foot adds about 0.69 yd3 of wall concrete."
+    },
+    {
+      "zh": "回墙平均高4.5英尺，底座宽5英尺4英寸、厚12英寸，键宽12英寸深30英寸均用于预算，不是结构设计。",
+      "en": "Returns assume 4.5 ft average height, 5 ft 4 in x 12 in footings and 12 in x 30 in keys; these are takeoff allowances, not design."
+    },
+    {
+      "zh": "普通条基长度分组和交叠需核；柱基毛量1.89立方码，扣重后净增加暂按1。",
+      "en": "Verify strip height groups and overlaps. Pad gross volume is 1.89 yd3; provisional net addition is 1 yd3."
+    },
+    {
+      "zh": "地坪一般说明#3@24英寸，挡土墙节点附近另见#4@24英寸；建筑立面另有砌块墙文字，需与现浇详图协调。",
+      "en": "General slab notes show #3 at 24 in; retaining details show #4 at 24 in. Reconcile architectural block-wall notes with cast-in-place details."
+    }
+  ],
+  "verification": [
+    {
+      "zh": "核实墙高、回墙高程、各详图适用位置及最终混凝土强度配筋。",
+      "en": "Confirm wall heights, return elevations, detail mapping, final concrete strength and reinforcement."
+    },
+    {
+      "zh": "核实承载土层、挖土运距、机械及泵车通道、排水出口和分次浇筑量。",
+      "en": "Confirm bearing soil, haul distance, equipment/pump access, drainage outlets and pour quantities."
+    }
+  ],
+  "exclusions": [
+    {
+      "zh": "上部木楼板木露台、木楼梯、整条车道、未明确露台及图外挡土墙、地下管线、设计许可和特殊检测另计。",
+      "en": "Upper timber floors/decks/stairs, full driveway, undefined patios/off-plan walls, underground services, design/permits and special inspections excluded."
+    },
+    {
+      "zh": "桩基、岩石、特殊降水支护及污染土处理不在普通土方暂列范围。",
+      "en": "Piles, rock, special dewatering/shoring and contaminated soil are outside ordinary earthwork allowances."
+    }
+  ]
+}
