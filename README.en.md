@@ -6,9 +6,11 @@ One project JSON feeds one calculator and both language versions. The inspector 
 
 [中文](README.md) · [Takeoff workflow](docs/takeoff-workflow.md) · [Reusable prompts](docs/reuse-prompts.md)
 
+Browse the sample reports without installing anything: gazebo [English PDF](examples/reports/gazebo-example-en.pdf) / [中文 PDF](examples/reports/gazebo-example-zh.pdf), and residential [English PDF](examples/reports/residential-example-en.pdf) / [中文 PDF](examples/reports/residential-example-zh.pdf). The examples are de-identified; original client drawings are not included.
+
 ## Run the examples
 
-Requires Python 3.10+ and [uv](https://docs.astral.sh/uv/getting-started/installation/). Run commands from the repository root. Access to the private GitHub repository requires an authorized account.
+Requires Python 3.10+ and [uv](https://docs.astral.sh/uv/getting-started/installation/). Run commands from the repository root.
 
 ```bash
 git clone https://github.com/AlexLisong/foundation-budget-reports.git

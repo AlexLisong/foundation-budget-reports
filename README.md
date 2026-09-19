@@ -6,6 +6,8 @@
 
 [English README](README.en.md) · [详细核量流程](docs/takeoff-workflow.md) · [下次可直接复制的提示词](docs/reuse-prompts.md)
 
+无需安装即可查看示例报告：凉亭 [中文 PDF](examples/reports/gazebo-example-zh.pdf) / [English PDF](examples/reports/gazebo-example-en.pdf)，住宅 [中文 PDF](examples/reports/residential-example-zh.pdf) / [English PDF](examples/reports/residential-example-en.pdf)。示例已去标识，原客户图纸不在仓库中。
+
 ## 最快上手
 
 需要 Python 3.10+ 和 [uv](https://docs.astral.sh/uv/getting-started/installation/)。所有命令在本仓库目录运行。
@@ -22,7 +24,7 @@ uv run foundation-budget report examples/gazebo.json --lang both --out output/ga
 uv run foundation-budget report examples/residential.json --lang both --out output/residential --preview
 ```
 
-私有仓库需先用有权限的 GitHub 账号登录。不使用 uv 也可以：`python3 -m venv .venv`，激活环境后 `python -m pip install -e .`，再直接运行 `foundation-budget ...`。
+不使用 uv 也可以：`python3 -m venv .venv`，激活环境后 `python -m pip install -e .`，再直接运行 `foundation-budget ...`。
 
 ## 新项目怎么做
 
